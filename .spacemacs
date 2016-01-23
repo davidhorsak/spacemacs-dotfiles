@@ -244,6 +244,8 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup 'trailing
+   
+   ruby-version-manager 'rvm
    ))
 
 (defun dotspacemacs/user-init ()
@@ -257,6 +259,13 @@ in `dotspacemacs/user-config'."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+    (linum-relative-toggle)
+    (global-linum-mode)
+    (setq confirm-kill-emacs 'yes-or-no-p)
+    (setq-default fill-column 120)
+    (define-globalized-minor-mode my-global-fci-mode fci-mode turn-on-fci-mode)
+    (my-global-fci-mode 1)
+    (global-vi-tilde-fringe-mode -1)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
