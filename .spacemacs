@@ -23,30 +23,17 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion	 
+     ;; auto-completion
      ;; better-defaults
-	 clojure
      emacs-lisp
-     git
-	 github
-     (git :variables
-          git-gutter-use-fringe t)
-	 html
-	 javascript
-     markdown
+     ;; git
+     ;; markdown
      ;; org
-	 php
-	 rspec
-	 ruby
-	 ruby-ext
-	 ruby-on-rails
-	 shell
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     syntax-checking
-	 yaml
+     ;; syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
