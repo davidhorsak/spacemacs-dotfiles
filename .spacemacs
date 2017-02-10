@@ -24,21 +24,20 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      clojure
-     rspec
      emacs-lisp
      (git :variables
           git-gutter-use-fringe t)
      github
      html
+     java
      javascript
      markdown
-     ;; org
      ruby
-     ruby-ext
      ruby-on-rails
      shell
      syntax-checking
      themes-megapack
+     typescript
      yaml
      ;; auto-completion
      ;; better-defaults
@@ -85,17 +84,17 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner nil
+   dotspacemacs-startup-banner 'official
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
-   dotspacemacs-startup-lists '(recents projects)
+   dotspacemacs-startup-lists '(recents)
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(subatomic
-                         spacemacs-dark
+   dotspacemacs-themes '(spacemacs-dark
                          spacemacs-light
+                         subatomic
                          solarized-light
                          solarized-dark
                          leuven
@@ -123,7 +122,7 @@ values."
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
    ;; The command key used for Evil commands (ex-commands) and
    ;; Emacs commands (M-x).
-   ;; By default the command key is `:' so ex-commands are executed like in Vim
+   ;; By default the command key is `:' so ex-commands are eckaxecuted like in Vim
    ;; with `:' and Emacs commands are executed with `<leader> :'.
    dotspacemacs-command-key ":"
    ;; If non nil `Y' is remapped to `y$'. (default t)
@@ -207,10 +206,7 @@ values."
    ))
 
 (defun dotspacemacs/user-init ()
-  "Initialization function for user code.
-It is called immediately after `dotspacemacs/init'.  You are free to put any
-user code."
-  )
+)
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -223,14 +219,40 @@ layers configuration. You are free to put any user code."
   (define-globalized-minor-mode my-global-fci-mode fci-mode turn-on-fci-mode)
   (my-global-fci-mode 1)
   (global-vi-tilde-fringe-mode -1)
-  )
+  (setq-default json-encoding-default-indentation 2
+                lua-indent-level 2
+                evil-shift-width 2
+                web-mode-markup-indent-offset 2
+                web-mode-css-indent-offset 2
+                typescript-indent-level 2
+                css-indent-offset 2
+                js-indent-level 2
+                js2-basic-offset 2
+                json-reformat:indent-width 2
+                web-mode-code-indent-offset 2)
+ )
 
 (defun dotspacemacs/config ()
   "This is were you can ultimately override default Spacemacs configuration.
 This function is called at the very end of Spacemacs initialization."
   ;; spacemacs configurations
+  (setq-default indent-tabs-mode nil)
 
   ;; Setting and showing the 80-character column width
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (autothemer pcache haml-mode uuidgen toc-org tide typescript-mode pug-mode org-plus-contrib org-bullets minitest livid-mode skewer-mode simple-httpd link-hint hide-comnt github-search eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff eshell-z dumb-jump darkokai-theme column-enforce-mode pcre2el inflections multiple-cursors spinner inf-ruby highlight gh s bind-map gradle-mode request zenburn-theme yaml-mode xterm-color ws-butler window-numbering web-mode tern tao-theme spacemacs-theme spaceline projectile-rails rake f planet-theme persp-mode orgit organic-green-theme open-junk-file omtose-phellack-theme neotree naquadah-theme monokai-theme moe-theme material-theme majapahit-theme magit-gitflow leuven-theme less-css-mode js2-refactor js2-mode indent-guide hl-todo help-fns+ helm-themes helm-projectile helm-make projectile helm-descbinds helm-ag gruvbox-theme grandshell-theme gotham-theme google-translate git-messenger git-link feature-mode exec-path-from-shell evil-surround evil-search-highlight-persist evil-mc evil-matchit evil-iedit-state evil-exchange eshell-prompt-extras emmet-mode eclim dracula-theme darktooth-theme color-theme-sanityinc-tomorrow coffee-mode cider-eval-sexp-fu bundler badwolf-theme auto-compile ample-theme ace-link avy cider clojure-mode yasnippet anzu smartparens flycheck helm helm-core magit magit-popup git-commit with-editor marshal ht markdown-mode hydra dash json-mode auto-complete quelpa package-build use-package which-key evil zonokai-theme zen-and-art-theme web-beautify volatile-highlights vi-tilde-fringe undo-tree underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tss tronesque-theme toxi-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme stekene-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smooth-scrolling smeargle slim-mode shell-pop seti-theme scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reverse-theme restart-emacs rbenv rainbow-delimiters railscasts-theme queue purple-haze-theme professional-theme powerline popwin popup pkg-info phoenix-dark-pink-theme phoenix-dark-mono-theme pastels-on-dark-theme paradox page-break-lines packed oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme mustang-theme multi-term move-text monochrome-theme molokai-theme mmm-mode minimal-theme markdown-toc magit-gh-pulls macrostep lush-theme lorem-ipsum linum-relative light-soap-theme json-snatcher json-reformat js-doc jbeans-theme jazz-theme jade-mode ir-black-theme inkpot-theme info+ iedit ido-vertical-mode hungry-delete highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-swoop helm-mode-manager helm-gitignore helm-flx helm-css-scss hc-zenburn-theme gruber-darker-theme goto-chg golden-ratio github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine gist gh-md gandalf-theme flycheck-pos-tip flx-ido flatui-theme flatland-theme firebelly-theme fill-column-indicator farmhouse-theme fancy-battery expand-region evil-visualstar evil-tutor evil-numbers evil-nerd-commenter evil-magit evil-lisp-state evil-indent-plus evil-escape evil-args evil-anzu eval-sexp-fu espresso-theme esh-help elisp-slime-nav django-theme diminish define-word darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme colorsarenice-theme color-theme-sanityinc-solarized clues-theme clj-refactor clean-aindent-mode chruby cherry-blossom-theme busybee-theme buffer-move bubbleberry-theme bracketed-paste birds-of-paradise-plus-theme bind-key auto-highlight-symbol async apropospriate-theme anti-zenburn-theme ample-zen-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-jump-helm-line))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
