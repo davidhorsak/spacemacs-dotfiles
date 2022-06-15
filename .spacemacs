@@ -47,6 +47,7 @@ This function should only modify configuration layer settings."
      java
      javascript
      react
+     tern
      ruby
      yaml
      ;; lsp
